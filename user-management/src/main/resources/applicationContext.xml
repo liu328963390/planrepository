@@ -145,9 +145,9 @@
           factory-bean="filterChainDefinitionMapBuilder" factory-method="buildFilterChainDefinitionMap"></bean>
 
     <bean id="filterChainDefinitionMapBuilder"
-          class="com.shiro.news.shirocontroll.factory.FilterChainDefinitionMapBuilder"></bean>
+          class="com.plan.respository.usermanagement.factory.FilterChainDefinitionMapBuilder"></bean>
 
     <bean id="shiroService"
-          class="com.shiro.news.shirocontroll.services.ShiroService"></bean>
+          class="com.plan.respository.usermanagement.services.ShiroService"></bean>
 
 </beans>
