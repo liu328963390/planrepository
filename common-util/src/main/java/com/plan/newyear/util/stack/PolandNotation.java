@@ -31,7 +31,7 @@ public class PolandNotation{
         //即“1+（（2+3）*5）-6”=>Arraylist[1 2 3 + 5 * + 6 -]
         //将得到的中缀表达式对应的list=>后缀表达式对应的list
         //将[1, +, （, （, 2, +, 3, ）, *, 5, ）, -, 6]==>1 2 3 + 5 * + 6 -
-        String expression = "1+((2+3)*4)-6";
+        String expression = "1+((20+3)*60)/12-6";
 
         List<String> list = toInfixExpression(expression);
         System.out.println(list);//[1, +, （, （, 2, +, 3, ）, *, 5, ）, -, 6]
