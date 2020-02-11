@@ -184,9 +184,8 @@ public class SuffixStack {
      * @param symbol
      * @return
      */
-    public static double doTheMath(String s1, String s2, String symbol){
+    public static Double doTheMath(String s1, String s2, String symbol){
         Double result;
-
         switch (symbol){
             case ADD:
                 result = Double.valueOf(s1)+Double.valueOf(s2);
@@ -210,7 +209,7 @@ public class SuffixStack {
     }
 
     public static void main(String[] args) {
-        String math = "12.0988+(2 -3.55)*4+10/5.0";
+        String math = "12.0988+(12.2938223 -3.55)*4+10/5.0";
         try {
             doCalc(doMatch(math));
         }catch (Exception e){
