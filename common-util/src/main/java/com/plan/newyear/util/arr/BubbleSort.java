@@ -10,10 +10,12 @@ import java.util.Date;
  */
 public class BubbleSort {
     public static void main(String[] args) {
-//        double arrs[] = {-3.9023,10,24,-9,48.23,15};
-//        bubble(arrs);
+        double arrs[] = {-3.9023,10,24,-9,48.23,15};
+        bubble(arrs);
         int arr[] = {-3,10,24,-9,48,15};
         bubleSort(arr);
+        System.out.println("排序后的数组为"+Arrays.toString(arrs));
+        System.out.println("排序后的数组为"+Arrays.toString(arr));
         /*
         int [] arr = new int[800000];
         for (int i = 0; i < arr.length; i++) {
@@ -130,9 +132,9 @@ public class BubbleSort {
             }
             if (flag == false){
                 break;
-            }else {
-                flag = false;
             }
+                flag = false;
+
         }
     }
 
@@ -151,9 +153,9 @@ public class BubbleSort {
             }
             if (flag == false){
                 break;
-            }else {
-                flag = false;
             }
+                flag = false;
+
         }
     }
 }
