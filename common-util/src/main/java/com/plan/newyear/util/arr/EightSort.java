@@ -13,9 +13,9 @@ import java.util.List;
 public class EightSort {
     public static void main(String[] args) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        int[] arrs = new int[15000000];
+        int[] arrs = new int[150000000];
         for (int i = 0; i < arrs.length; i++) {
-            arrs[i] = (int)(Math.random()*150000000);
+            arrs[i] = (int)(Math.random()*1500000000);
         }
 //        Date datei = new Date();
 //        String formati = simpleDateFormat.format(datei);
@@ -42,12 +42,19 @@ public class EightSort {
 //        System.out.println(daySub);
         Date dates = new Date();
         String formats = simpleDateFormat.format(dates);
-        System.out.println("shell排序前的时间"+formats);
+        System.out.println("快速排序前的时间"+formats);
         shellSorts(arrs);
         Date date1s = new Date();
         String format1s = simpleDateFormat.format(date1s);
-        System.out.println("shell排序后的时间"+format1s);
+        System.out.println("快速排序后的时间"+format1s);
+        Date dateq = new Date();
+        String formatq = simpleDateFormat.format(dateq);
+        System.out.println("shell排序前的时间"+formatq);
 
+        quickSort(arrs,0,arrs.length-1);
+        Date date1q = new Date();
+        String format1q = simpleDateFormat.format(date1q);
+        System.out.println("shell排序后的时间"+format1q);
 
     }
 
@@ -139,6 +146,44 @@ public class EightSort {
                     arr[insertIndex] = insertVal;
                 }
             }
+        }
+    }
+
+    //快速排序
+    public static void quickSort(int [] arr,int left, int right){
+        int l = left;
+        int r = right;
+        int pivot = arr[(left+right)/2];
+        int temp = 0;
+        while (l < r){
+            while (arr[l] < pivot){
+                l +=1;
+            }
+            while (arr[r] > pivot){
+                r -=1;
+            }
+            if (l >= r){
+                break;
+            }
+            temp = arr[l];
+            arr[l] = arr[r];
+            arr[r] = temp;
+            if (arr[l] == pivot){
+                r -=1;
+            }
+            if (arr[r] == pivot){
+                l +=1;
+            }
+        }
+        if (l == r){
+            l += 1;
+            r -= 1;
+        }
+        if (left < r){
+            quickSort(arr,left,r);
+        }
+        if (right > l){
+            quickSort(arr,l,right);
         }
     }
 }
