@@ -1,5 +1,6 @@
 package com.plan.newyear.util.arr;
 
+import com.plan.newyear.util.stack.SuffixStack;
 import com.plan.newyear.util.time.CalculateTime;
 
 import java.text.SimpleDateFormat;
@@ -13,7 +14,7 @@ import java.util.List;
 public class EightSort {
     public static void main(String[] args) {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        int[] arrs = new int[150000000];
+        int[] arrs = new int[15000000];
         for (int i = 0; i < arrs.length; i++) {
             arrs[i] = (int)(Math.random()*1500000000);
         }
@@ -60,11 +61,17 @@ public class EightSort {
         String formatqm = simpleDateFormat.format(dateqm);
         System.out.println("归并排序前的时间"+formatqm);
         int[] temp = new int[arrs.length];
-       mergeSort(arrs,0,arrs.length-1,temp);
+       bucketSort(arrs);
         Date date1qm = new Date();
         String format1qm = simpleDateFormat.format(date1qm);
         System.out.println("归并排序后的时间"+format1qm);
-
+        System.gc();
+        try {
+            List<String> list = SuffixStack.doMatch("15000000*11*4/1024/1204/1024");
+            SuffixStack.doCalc(list);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     //冒泡排序
@@ -198,6 +205,14 @@ public class EightSort {
 
     //归并排序法
     //分与全
+
+    /**
+     *
+     * @param arr 原始数组
+     * @param left 左下标
+     * @param right 右下标
+     * @param temp 临时数组
+     */
     public static void mergeSort(int[] arr,int left,int right,int[] temp){
         if (left<right){
             int mid = (left+right)/2;
@@ -207,6 +222,15 @@ public class EightSort {
         }
     }
     //合
+
+    /**
+     *
+     * @param arr 原始数组
+     * @param left 左下标
+     * @param right 右下标
+     * @param mid 中间下标
+     * @param temp 临时数组
+     */
     public static void merge(int[] arr,int left,int right,int mid,int[] temp){
         int i = left;
         int j = mid+1;
@@ -240,5 +264,35 @@ public class EightSort {
             templeft += 1;
             t += 1;
         }
+    }
+
+    //桶排序或者是基数排序法
+    public static void bucketSort(int[] arr){
+        int[][] bucket = new int[10][arr.length];
+        int[] bucketElementCounts = new int[10];
+        int max = arr[0];
+        for (int i = 0; i < arr.length; i++) {
+            if (max<arr[i]){
+                max = arr[i];
+            }
+        }
+        int maxLength = (max+"").length();
+        for (int i = 0,n=1; i < maxLength; i++,n*=10) {
+            for (int j = 0; j < arr.length; j++) {
+                int bucketElement = arr[j]/n%10;
+                bucket[bucketElement][bucketElementCounts[bucketElement]] = arr[j];
+                bucketElementCounts[bucketElement]++;
+            }
+            int index = 0;
+            for (int j = 0; j < bucketElementCounts.length; j++) {
+                if (bucketElementCounts[j] != 0){
+                    for (int k = 0; k < bucketElementCounts[j]; k++) {
+                        arr[index++] = bucket[j][k];
+                    }
+                }
+                bucketElementCounts[j] = 0;
+            }
+        }
+
     }
 }
