@@ -1,9 +1,11 @@
 package com.plan.newyear.util.arithmetic;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class DataSearch {
+    public static int maxSize = 45;
 
     /**
      * 插值查找算法：条件是有序的从小到大排列
@@ -131,5 +133,57 @@ public class DataSearch {
             }
             return list;
         }
+    }
+
+    /**
+     * 斐波那契查找算法：条件是有序的从小到大排列的数组
+     * @param arr 原始数组
+     * @param findVal 需要查找的值
+     * @return 如果有就返回下标，没有就返回-1；
+     */
+    public static int gloryValueSearch(int[] arr,int findVal){
+        int low = 0;
+        int high = arr.length-1;
+        int k = 0;
+        int mid = 0;
+        int[] F = gloryArray();
+        while (high>F[k]-1){
+            k++;
+        }
+        int[] temp = Arrays.copyOf(arr,F[k]);
+        for (int i = high+1; i <temp.length ; i++) {
+            temp[i] = arr[high];
+        }
+        while (low<=high){
+            mid = low+F[k-1]-1;
+            if (findVal<temp[mid]){
+                high = mid - 1;
+                k--;
+            }else if (findVal>temp[mid]){
+                low = mid + 1;
+                k -= 2;
+            }else {
+                if (mid<=high){
+                    return mid;
+                }else {
+                    return high;
+                }
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 定义一个斐波那契（黄金分割）数组
+     * @return 返回斐波那契数组
+     */
+    public static int[] gloryArray(){
+        int[] ints = new int[maxSize];
+        for (int i = 2; i < maxSize; i++) {
+            ints[0] = 1;
+            ints[1] = 1;
+            ints[i] = ints[i-1] + ints[i-2];
+        }
+        return ints;
     }
 }
