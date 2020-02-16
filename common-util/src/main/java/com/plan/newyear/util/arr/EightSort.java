@@ -61,13 +61,13 @@ public class EightSort {
         String formatqm = simpleDateFormat.format(dateqm);
         System.out.println("归并排序前的时间"+formatqm);
         int[] temp = new int[arrs.length];
-       bucketSort(arrs);
+       heapSort(arrs);
         Date date1qm = new Date();
         String format1qm = simpleDateFormat.format(date1qm);
         System.out.println("归并排序后的时间"+format1qm);
         System.gc();
         try {
-            List<String> list = SuffixStack.doMatch("15000000*11*4/1024/1204/1024");
+            List<String> list = SuffixStack.doMatch("150000000*11*4/1024/1204/1024");
             SuffixStack.doCalc(list);
         } catch (Exception e) {
             e.printStackTrace();
@@ -294,5 +294,41 @@ public class EightSort {
             }
         }
 
+    }
+
+    //堆排序
+    public static void heapSort(int[] arr){
+        int temp = 0;
+        for (int i=arr.length/2-1;i>=0;i--){
+            adjustHeap(arr,i,arr.length);
+        }
+        for (int i=arr.length-1;i>=0;i--){
+            temp = arr[i];
+            arr[i] = arr[0];
+            arr[0]=temp;
+            adjustHeap(arr,0,i);
+        }
+    }
+
+    /**
+     * 完成将以i对应的非叶子节点的树调整成大顶堆
+     * @param arr 待调整的数组
+     * @param i 表示非叶子节点在数组中的索引
+     * @param length 表示对多少个元素进行调整，lenght是在逐渐减少
+     */
+    public static void adjustHeap(int[] arr,int i,int length){
+        int temp = arr[i];
+        for (int j = i*2+1;j<length;j=j*2+1){
+            if (j+1<length && arr[j] < arr[j+1]){
+                j++;
+            }
+            if (arr[j]>temp){
+                arr[i] = arr[j];
+                i=j;
+            }else {
+                break;
+            }
+        }
+        arr[i] = temp;
     }
 }

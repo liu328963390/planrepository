@@ -12,31 +12,31 @@ public class BinaryTrees {
         //创建需要的节点
         HeroNode node1 = new HeroNode(1, "宋江");
         HeroNode node2 = new HeroNode(2, "吴用");
-        HeroNode node3 = new HeroNode(3, "卢");
-        HeroNode node4 = new HeroNode(4, "公孙");
-        HeroNode node5 = new HeroNode(5, "李逵");
-        HeroNode node6 = new HeroNode(6, "柴进");
-        HeroNode node7 = new HeroNode(7, "林冲");
-        HeroNode node8 = new HeroNode(8, "阮小二");
+        HeroNode node3 = new HeroNode(3, "卢俊义");
+        HeroNode node4 = new HeroNode(4, "林冲");
+        HeroNode node5 = new HeroNode(5, "关胜");
+//        HeroNode node6 = new HeroNode(6, "柴进");
+//        HeroNode node7 = new HeroNode(7, "林冲");
+//        HeroNode node8 = new HeroNode(8, "阮小二");
         //说明，先手动创建该二叉树，后面学习递归的方式创建二叉树
         node1.setLeft(node2);
-        node2.setLeft(node4);
         node1.setRight(node3);
-        node2.setRight(node6);
         node3.setLeft(node5);
-        node3.setRight(node7);
-        node4.setLeft(node8);
+        node3.setRight(node4);
         binarys.setRoot(node1);
         //测试
-        System.out.println("前序遍历");
+        System.out.println("删除前");
         binarys.preOrder();
-        HeroNode node = binarys.preSearch(1);
-        System.out.println("中序遍历");
-        binarys.midOrder();
-        binarys.midSearch(1);
-        System.out.println("后序遍历");
-        binarys.postOrder();
-        binarys.postSearch(1);
+//        HeroNode node = binarys.preSearch(1);
+//        System.out.println("中序遍历");
+//        binarys.midOrder();
+//        binarys.midSearch(1);
+//        System.out.println("后序遍历");
+//        binarys.postOrder();
+//        binarys.postSearch(1);
+        binarys.deleteNode(5);
+        System.out.println("删除后");
+        binarys.preOrder();
 
         //查找
 
@@ -103,6 +103,31 @@ class Binarys{
             return null;
         }
     }
+
+    //删除节点
+    public void deleteNode(int no){
+        //首先考虑如果二叉树是空树root,如果只有一个root节点，则等价于将二叉树置空
+        if (root != null){
+            //如果只有一个root节点，这里立即判断root是不是就是要删除节点
+            if (root.getNo() == no){
+//                if (root.getLeft() != null && root.getRight() != null){
+//                    root = root.getLeft();
+//                    root.setRight(root.getRight());
+//                }else if (root.getLeft()!=null){
+//                    root = root.getLeft();
+//                }else if (root.getRight() !=null){
+//                    root = root.getRight();
+//                }else {
+                    root = null;
+//                }
+            }else {
+                //进行递归删除
+                root.delNode(no);
+            }
+        }else {
+            System.out.println("空树不能删除");
+        }
+    }
 }
 //先创建HeroNode节点
 class HeroNode{
@@ -110,10 +135,31 @@ class HeroNode{
     private String name;
     private HeroNode left;
     private HeroNode right;
+    //说明：
+    //1.如果leftType==0表示指向的是左子树，如果1则表示 指向前驱节点
+    private int leftType;
+    //2.如果rightType == 0表示 指向是右子树，如果1表示指向后继节点
+    private int rightType;
 
     public HeroNode(int no, String name) {
         this.no = no;
         this.name = name;
+    }
+
+    public int getLeftType() {
+        return leftType;
+    }
+
+    public void setLeftType(int leftType) {
+        this.leftType = leftType;
+    }
+
+    public int getRightType() {
+        return rightType;
+    }
+
+    public void setRightType(int rightType) {
+        this.rightType = rightType;
     }
 
     public int getNo() {
@@ -269,6 +315,55 @@ class HeroNode{
             return this;
         }
         return resNode;
+    }
+
+    //递归删除节点
+    //如果删除的节点是叶子节点，则删除该节点；如果删除的节点是非叶子节点，则删除该子树
+    public void delNode(int no){
+        /*
+        1.因我二叉树是单向的，判断当前节点的子节点是否需要删除节点，而不能去判断当前这个节点是不是需要删除节点
+        2.如果当前节点的左子节点不为空，并且左子节点就是要删除节点，就将this.left = null；并且就返回（结束递归删除）
+        3.如果当前节点的右子节点不为空，并且右子节点就是要删除节点，就将this.right = null,并且就返回（结束递归删除）
+        4.如果第2，第3步没有删除节点，那么我们就需要向左子树进行递归删除
+        5.如果第4步也没有删除节点，则应当向右子树进行递归删除。
+         */
+        if (this.left != null && this.left.no == no){
+//            if (this.left.left != null && this.left.right != null){
+//                this.left = this.left.left;
+//                this.left.right = this.left.right;
+//                return;
+//            }else if (this.left.left != null){
+//                this.left = this.left.left;
+//                return;
+//            }else if (this.left.right != null){
+//                this.left = this.left.right;
+//                return;
+//            }else {
+                this.left = null;
+                return;
+//            }
+        }
+        if (this.right != null && this.right.no == no){
+//            if (this.right.left != null){
+//                this.right = this.right.left;
+//                return;
+//            }else if (this.right.right != null){
+//                this.right = this.right.right;
+//                return;
+//            }else if (this.right.left != null && this.right.left != null){
+//                this.right = this.right.left;
+//                return;
+//            }else {
+                this.right = null;
+                return;
+//            }
+        }
+        if (this.left != null){
+            this.left.delNode(no);
+        }
+        if (this.right != null){
+            this.right.delNode(no);
+        }
     }
 }
 
