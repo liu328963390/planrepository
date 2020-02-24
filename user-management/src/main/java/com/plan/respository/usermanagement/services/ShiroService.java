@@ -1,10 +1,10 @@
 package com.plan.respository.usermanagement.services;
 
-import java.util.Date;
-
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.session.Session;
+
+import java.util.Date;
 
 public class ShiroService {
 	
@@ -14,7 +14,6 @@ public class ShiroService {
 		
 		Session session = SecurityUtils.getSubject().getSession();
 		Object val = session.getAttribute("key");
-		
 		System.out.println("Service SessionVal: " + val);
 	}
 	

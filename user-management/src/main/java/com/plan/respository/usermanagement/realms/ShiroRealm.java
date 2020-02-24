@@ -1,21 +1,15 @@
 package com.plan.respository.usermanagement.realms;
 
-import java.util.HashSet;
-import java.util.Set;
-
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.LockedAccountException;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authc.UnknownAccountException;
-import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class ShiroRealm extends AuthorizingRealm {
 
@@ -24,30 +18,30 @@ public class ShiroRealm extends AuthorizingRealm {
 			AuthenticationToken token) throws AuthenticationException {
 		System.out.println("[FirstRealm] doGetAuthenticationInfo");
 		
-		//1. �� AuthenticationToken ת��Ϊ UsernamePasswordToken 
+		//1. ?? AuthenticationToken ???? UsernamePasswordToken 
 		UsernamePasswordToken upToken = (UsernamePasswordToken) token;
 		
-		//2. �� UsernamePasswordToken ������ȡ username
+		//2. ?? UsernamePasswordToken ??????? username
 		String username = upToken.getUsername();
 		
-		//3. �������ݿ�ķ���, �����ݿ��в�ѯ username ��Ӧ���û���¼
-		System.out.println("�����ݿ��л�ȡ username: " + username + " ����Ӧ���û���Ϣ.");
+		//3. ?????????????, ????????в?? username ???????????
+		System.out.println("????????л?? username: " + username + " ?????????????.");
 		
-		//4. ���û�������, ������׳� UnknownAccountException �쳣
+		//4. ???????????, ???????? UnknownAccountException ??
 		if("unknown".equals(username)){
-			throw new UnknownAccountException("�û�������!");
+			throw new UnknownAccountException("?????????!");
 		}
 		
-		//5. �����û���Ϣ�����, �����Ƿ���Ҫ�׳������� AuthenticationException �쳣. 
+		//5. ???????????????, ??????????????????? AuthenticationException ??. 
 		if("monster".equals(username)){
-			throw new LockedAccountException("�û�������");
+			throw new LockedAccountException("?????????");
 		}
 		
-		//6. �����û������, ������ AuthenticationInfo ���󲢷���. ͨ��ʹ�õ�ʵ����Ϊ: SimpleAuthenticationInfo
-		//������Ϣ�Ǵ����ݿ��л�ȡ��.
-		//1). principal: ��֤��ʵ����Ϣ. ������ username, Ҳ���������ݱ��Ӧ���û���ʵ�������. 
+		//6. ????????????, ?????? AuthenticationInfo ???????. ?????????????: SimpleAuthenticationInfo
+		//????????????????л????.
+		//1). principal: ???????????. ?????? username, ?????????????????????????????. 
 		Object principal = username;
-		//2). credentials: ����. 
+		//2). credentials: ????. 
 		Object credentials = null; //"fc1709d0a95a6be30bc5926fdb7f22f4";
 		if("admin".equals(username)){
 			credentials = "038bdaf98f2037b31f1e75b5b4c9b26e";
@@ -55,9 +49,9 @@ public class ShiroRealm extends AuthorizingRealm {
 			credentials = "098d2c478e9c11555ce2823231e02ec1";
 		}
 		
-		//3). realmName: ��ǰ realm ����� name. ���ø���� getName() ��������
+		//3). realmName: ??? realm ????? name. ???????? getName() ????????
 		String realmName = getName();
-		//4). ��ֵ. 
+		//4). ???. 
 		ByteSource credentialsSalt = ByteSource.Util.bytes(username);
 		
 		SimpleAuthenticationInfo info = null; //new SimpleAuthenticationInfo(principal, credentials, realmName);
@@ -75,24 +69,24 @@ public class ShiroRealm extends AuthorizingRealm {
 		System.out.println(result);
 	}
 
-	//��Ȩ�ᱻ shiro �ص��ķ���
+	//????? shiro ????????
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(
 			PrincipalCollection principals) {
-		//1. �� PrincipalCollection ������ȡ��¼�û�����Ϣ
+		//1. ?? PrincipalCollection ??????????????????
 		Object principal = principals.getPrimaryPrincipal();
 		
-		//2. ���õ�¼���û�����Ϣ���û���ǰ�û��Ľ�ɫ��Ȩ��(������Ҫ��ѯ���ݿ�)
+		//2. ????????????????????????????????????(???????????????)
 		Set<String> roles = new HashSet<>();
 		roles.add("user");
 		if("admin".equals(principal)){
 			roles.add("admin");
 		}
 		
-		//3. ���� SimpleAuthorizationInfo, �������� reles ����.
+		//3. ???? SimpleAuthorizationInfo, ???????? reles ????.
 		SimpleAuthorizationInfo info = new SimpleAuthorizationInfo(roles);
 		
-		//4. ���� SimpleAuthorizationInfo ����. 
+		//4. ???? SimpleAuthorizationInfo ????. 
 		return info;
 	}
 }

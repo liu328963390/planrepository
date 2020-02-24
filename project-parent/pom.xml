@@ -19,7 +19,6 @@
     <modules>
         <module>../common-util</module>
         <module>../web-utils</module>
-        <module>../base-core</module>
     </modules>
 
     <properties>
