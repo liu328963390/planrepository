@@ -9,7 +9,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 
 public class TestRealm extends AuthorizingRealm {
 
-	//������Ȩ�ķ���. 
+    //用于授权的方法.
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(
 			PrincipalCollection principals) {
@@ -17,7 +17,7 @@ public class TestRealm extends AuthorizingRealm {
 		return null;
 	}
 
-	//������֤�ķ���
+    //用于认证的方法
 	@Override
 	protected AuthenticationInfo doGetAuthenticationInfo(
 			AuthenticationToken token) throws AuthenticationException {

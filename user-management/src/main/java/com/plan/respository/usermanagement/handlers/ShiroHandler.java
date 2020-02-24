@@ -1,7 +1,5 @@
 package com.plan.respository.usermanagement.handlers;
 
-import javax.servlet.http.HttpSession;
-
 import com.plan.respository.usermanagement.services.ShiroService;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
@@ -12,12 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
+
 
 
 @Controller
 @RequestMapping("/shiro")
 public class ShiroHandler {
-	
+
 	@Autowired
 	private ShiroService shiroService;
 
@@ -29,29 +29,29 @@ public class ShiroHandler {
 	}
 
 	@RequestMapping("/login")
-	public String login(@RequestParam("username") String username, 
+	public String login(@RequestParam("username") String username,
 			@RequestParam("password") String password){
 		Subject currentUser = SecurityUtils.getSubject();
-		
+
 		if (!currentUser.isAuthenticated()) {
-        	// ���û����������װΪ UsernamePasswordToken ����
+            // 把用户名和密码封装为 UsernamePasswordToken 对象
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
             // rememberme
             token.setRememberMe(true);
             try {
             	System.out.println("1. " + token.hashCode());
-            	// ִ�е�¼. 
+                // 执行登录.
                 currentUser.login(token);
-            } 
+            }
             // ... catch more exceptions here (maybe custom ones specific to your application?
-            // ������֤ʱ�쳣�ĸ���. 
+            // 所有认证时异常的父类.
             catch (AuthenticationException ae) {
                 //unexpected condition?  error?
-            	System.out.println("��¼ʧ��: " + ae.getMessage());
+            	System.out.println("登录失败: " + ae.getMessage());
             }
         }
-		
+
 		return "redirect:/list.jsp";
 	}
-	
+
 }
