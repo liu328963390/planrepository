@@ -21,10 +21,10 @@ public class BinarySearch {
         System.out.println(list);
     }
 
-    //二分查找算法
+
 
     /**
-     *
+     *二分查找算法
      * @param arr 要查找的数组
      * @param left 左边的索引
      * @param right 右边的索引
