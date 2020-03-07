@@ -45,7 +45,7 @@ public class SecondRealm extends AuthenticatingRealm {
 
         //3). realmName: 当前 realm 对象的 name. 调用父类的 getName() 方法即可
 		String realmName = getName();
-        //4). 盐值.
+        //4). 盐值.是唯一的，但是不可变的
 		ByteSource credentialsSalt = ByteSource.Util.bytes(username);
 
         SimpleAuthenticationInfo info = null; //new SimpleAuthenticationInfo(principal, credentials, realmName);
