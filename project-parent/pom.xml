@@ -75,7 +75,7 @@
         <!--        zookeeper-->
         <junit.version>RELEASE</junit.version>
         <log4j-core.version>2.8.2</log4j-core.version>
-        <zookeeper.version>3.4.11</zookeeper.version>
+        <zookeeper.version>3.4.14</zookeeper.version>
 
         <!--hadoop配置 -->
         <hadoop-common.version>2.7.2</hadoop-common.version>
