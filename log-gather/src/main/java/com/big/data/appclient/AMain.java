@@ -281,7 +281,7 @@ public class AMain {
         return packEventJson("loading",jsonObject);
     }
 
-    private static JSONObject generateAd(){
+    public static JSONObject generateAd(){
         AppAd appAd = new AppAd();
         int flag = rand.nextInt(3)+1;
         appAd.setEntry(flag+"");
