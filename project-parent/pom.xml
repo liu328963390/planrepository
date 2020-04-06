@@ -114,7 +114,7 @@
         <aip-java-sdk.version>4.2.0</aip-java-sdk.version>
         <tess4j.version>3.2.1</tess4j.version>
         <jacob.version>1.18</jacob.version>
-        <pdfbox.version>2.0.12</pdfbox.version>
+        <pdfbox.version>2.0.15</pdfbox.version>
         <pdfbox-app.version>1.8.10</pdfbox-app.version>
         <fastjson.version>1.2.46</fastjson.version>
         <dubbo-starter.version>1.0.10</dubbo-starter.version>
