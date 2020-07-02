@@ -88,7 +88,7 @@
         <!--通用Mapper -->
         <mapper-spring-boot-starter.version>1.2.3</mapper-spring-boot-starter.version>
         <lombok.version>1.18.8</lombok.version>
-        <mysql-connector-java.version>3.2.1</mysql-connector-java.version>
+        <mysql-connector-java.version>8.0.16</mysql-connector-java.version>
         <servlet-api.version>2.5</servlet-api.version>
         <jsp-api.version>2.2</jsp-api.version>
         <jstl.version>1.2</jstl.version>
