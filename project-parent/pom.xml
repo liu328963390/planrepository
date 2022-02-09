@@ -60,7 +60,7 @@
         <shiro-hazelcast.version>1.5.0</shiro-hazelcast.version>
         <shiro-guice.version>1.5.0</shiro-guice.version>
         <shiro-quartz.version>1.5.0</shiro-quartz.version>
-        <shiro-spring.version>1.5.0</shiro-spring.version>
+        <shiro-spring.version>1.7.1</shiro-spring.version>
         <shiro-spring-boot-web-starter.version>1.5.0</shiro-spring-boot-web-starter.version>
         <shiro-spring-boot-starter.version>1.5.0</shiro-spring-boot-starter.version>
         <shiro-features.version>1.5.0</shiro-features.version>
