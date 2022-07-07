@@ -37,7 +37,7 @@
         <spring-context.version>4.0.0.RELEASE</spring-context.version>
         <spring-context-support.version>4.0.0.RELEASE</spring-context-support.version>
         <spring-core.version>4.0.0.RELEASE</spring-core.version>
-        <spring-expression.version>4.0.0.RELEASE</spring-expression.version>
+        <spring-expression.version>5.2.21.RELEASE</spring-expression.version>
         <spring-jdbc.version>4.0.0.RELEASE</spring-jdbc.version>
         <spring-orm.version>4.0.0.RELEASE</spring-orm.version>
         <spring-tx.version>4.0.0.RELEASE</spring-tx.version>
