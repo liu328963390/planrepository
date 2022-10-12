@@ -50,7 +50,7 @@
 
 
         <!--        shiro权限     -->
-        <shiro-core.version>1.5.0</shiro-core.version>
+        <shiro-core.version>1.10.0</shiro-core.version>
         <shiro-web.version>1.5.0</shiro-web.version>
         <shiro-servlet-plugin.version>1.5.0</shiro-servlet-plugin.version>
         <shiro-jaxrs.version>1.5.0</shiro-jaxrs.version>
