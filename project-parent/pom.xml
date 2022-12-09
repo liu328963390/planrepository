@@ -41,7 +41,7 @@
         <spring-jdbc.version>4.0.0.RELEASE</spring-jdbc.version>
         <spring-orm.version>4.0.0.RELEASE</spring-orm.version>
         <spring-tx.version>4.0.0.RELEASE</spring-tx.version>
-        <spring-web.version>4.0.0.RELEASE</spring-web.version>
+        <spring-web.version>6.0.0</spring-web.version>
         <spring-webmvc.version>4.0.0.RELEASE</spring-webmvc.version>
         <mybatis-plus-boot-starter.version>3.0.5</mybatis-plus-boot-starter.version>
 
