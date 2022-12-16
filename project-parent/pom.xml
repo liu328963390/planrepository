@@ -33,7 +33,7 @@
         <!--        spring的包-->
         <spring-aop.version>4.0.0.RELEASE</spring-aop.version>
         <spring-aspects.version>4.0.0.RELEASE</spring-aspects.version>
-        <spring-beans.version>4.0.0.RELEASE</spring-beans.version>
+        <spring-beans.version>5.2.20.RELEASE</spring-beans.version>
         <spring-context.version>4.0.0.RELEASE</spring-context.version>
         <spring-context-support.version>4.0.0.RELEASE</spring-context-support.version>
         <spring-core.version>4.0.0.RELEASE</spring-core.version>
